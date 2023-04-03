@@ -25,11 +25,11 @@ export default function Recipe({ title, src, stats, ingr, dirs }) {
                     <h2>Statistics</h2>
                     {stats}
                 </div>
-                <div className={styles.left}>
+                <div className={styles.ingr}>
                     <h2>Ingredients</h2>
                     {ingr}
                 </div>
-                <div className={styles.left}>
+                <div className={styles.dirs}>
                     <h2>Directions</h2>
                     {dirs}
                 </div>

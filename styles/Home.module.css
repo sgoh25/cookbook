@@ -46,7 +46,7 @@
   max-width: 100%;
 }
 
-.card {
+.card, .back {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
@@ -54,43 +54,17 @@
   transition: background 200ms, border 200ms;
 }
 
-.card span {
+.card span, .back span {
   display: inline-block;
   transition: transform 200ms;
 }
 
-.card h2 {
+.card h2, .back h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
 
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-}
-
-.back {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.back span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.back h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.back p {
+.card p, .back p {
   margin: 0;
   opacity: 0.6;
   font-size: 0.9rem;
@@ -140,40 +114,46 @@
   font-family: var(--font-mono)
 }
 
-.left {
+.left, .ingr, .dirs {
   text-align: left;
-  width: 100%;
+  width: 90%;
   padding: 1rem 0;
   font-family: var(--font-mono)
 }
 
-/* .left ul {
-  margin-left: 15px;
-}
-
-.left li {
-  margin-bottom: 4px;
-}
-
-.left h2 + ul {
-  margin-top: 10px;
-} */
-
-.left h2 + p {
+.left h2 + p, .ingr h2 + p, .dirs h2 + p {
   margin-top: 10px;
 }
 
-.left h2 + div {
+.left h2 + div, .ingr h2 + div, .dirs h2 + div {
   margin-top: 10px;
 }
 
-.left input + label {
+.left input + label, .ingr input + label, .dirs input + label {
   margin-left: 5px;
+}
+
+.ingr div + div {
+  margin-top: 2px;
+}
+
+.dirs div + div {
+  margin-top: 10px;
+}
+
+.dirs input {
+  vertical-align: top;
+  margin-top: 3px;
+}
+
+.dirs label {
+  display: inline-block;
+  width: 95%;
 }
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  .card:hover {
+  .card:hover, .back:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }
@@ -182,22 +162,13 @@
     transform: translateX(4px);
   }
 
-  .back:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
-
   .back:hover span {
     transform: translateX(-4px);
   }
 }
 
 @media (prefers-reduced-motion) {
-  .card:hover span {
-    transform: none;
-  }
-
-  .back:hover span {
+  .card:hover span, .back:hover span {
     transform: none;
   }
 }
@@ -215,19 +186,11 @@
     text-align: center;
   }
 
-  .card {
+  .card, .back {
     padding: 1rem 2.5rem;
   }
 
-  .card h2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .back {
-    padding: 1rem 2.5rem;
-  }
-
-  .back h2 {
+  .card h2, .back h2 {
     margin-bottom: 0.5rem;
   }
 
