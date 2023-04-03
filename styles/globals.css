@@ -89,6 +89,10 @@ a {
   text-decoration: none;
 }
 
+input[type=checkbox]:checked + label.strikethrough{
+  text-decoration: line-through;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
