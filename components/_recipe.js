@@ -16,29 +16,31 @@ export default function Recipe({ title, src, stats, ingr, dirs }) {
                 <link rel="icon" href="/fruit.png" />
             </Head>
 
-            <main className={styles.main}>
-                <Image src={src} alt={title} width={300} height={220} />
-                <div className={styles.title}>
-                    <h1>{title}</h1>
-                </div>
-                <div className={styles.left}>
-                    <h2>Statistics</h2>
-                    {stats}
-                </div>
-                <div className={styles.ingr}>
-                    <h2>Ingredients</h2>
-                    {ingr}
-                </div>
-                <div className={styles.dirs}>
-                    <h2>Directions</h2>
-                    {dirs}
-                </div>
-                <div className={styles.center}>
-                    <Link href="/" className={styles.back}>
-                        <p className={inter.className}><span>&lt;-</span> Back to Home</p>
-                    </Link>
-                </div>
-            </main>
+            <div className={styles.wrapper}>
+                <main className={styles.main}>
+                    <Image src={src} alt={title} width={300} height={220} />
+                    <div className={styles.title}>
+                        <h1>{title}</h1>
+                    </div>
+                    <div className={styles.left}>
+                        <h2>Statistics</h2>
+                        {stats}
+                    </div>
+                    <div className={styles.ingr}>
+                        <h2>Ingredients</h2>
+                        {ingr}
+                    </div>
+                    <div className={styles.dirs}>
+                        <h2>Directions</h2>
+                        {dirs}
+                    </div>
+                    <div className={styles.center}>
+                        <Link href="/" className={styles.back}>
+                            <p className={inter.className}><span>&lt;-</span> Back to Home</p>
+                        </Link>
+                    </div>
+                </main>
+            </div>
         </>
     )
 }
