@@ -50,12 +50,11 @@ def convert_to_json(in_file, output):
 
 
 def parse_path(path, output):
-    for p in Path(path).iterdir():
-        if p.is_dir():
+    if path.is_dir():
+        for p in path.iterdir():
             parse_path(p, output)
-        if p.is_file() and p.suffix == ".txt":
-            # Convert to json
-            convert_to_json(p, output)
+    elif path.is_file() and path.suffix == ".txt":
+        convert_to_json(path, output)
 
 
 def main():
