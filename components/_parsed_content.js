@@ -10,12 +10,12 @@ export default function ParsedContent(jsonData) {
     )
     ingr = (
         <>
-            {jsonData.Ingredients.map(element => <ListElement label={element} key={element} />)}
+            {jsonData.Ingredients.map((element, index) => <ListElement label={element} id={"ingr" + index} key={element} />)}
         </>
     )
     dirs = (
         <>
-            {jsonData.Directions.map(element => <ListElement label={element} key={element} />)}
+            {jsonData.Directions.map((element, index) => <ListElement label={element} id={"dirs" + index} key={element} />)}
         </>
     )
     return [title, stats, ingr, dirs]
