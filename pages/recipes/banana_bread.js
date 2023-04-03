@@ -1,26 +1,11 @@
-import ListElement from '../../components/_list_element.js'
-import Recipe from '../../components/_recipe.js'
+import Recipe from '@/components/_recipe.js'
+import ParsedContent from '@/components/_parsed_content.js'
+import dataFile from '@/public/recipe_json/banana_bread.json'
 
 export default function BananaBread() {
-    let stats, ingr, dirs;
-    stats = (
-        <>
-            <p>Statistic 1</p>
-            <p>Statistic 2</p>
-        </>
-    )
-    ingr = (
-        <>
-            <ListElement label="Ingredient1" />
-            <ListElement label="Ingredient2" />
-        </>
-    )
-    dirs = (
-        <>
-            <ListElement label="1. Direction1" />
-            <ListElement label="2. Direction2" />
-        </>
-    )
+    let jsonData = JSON.parse(JSON.stringify(dataFile))
+    const [title, stats, ingr, dirs] = ParsedContent(jsonData);
+    const img = "/recipe_images/banana_bread.jpeg";
 
-    return <Recipe title="Banana Bread" src="/recipe_images/banana_bread.jpeg" stats={stats} ingr={ingr} dirs={dirs} />
+    return <Recipe title={title} src={img} stats={stats} ingr={ingr} dirs={dirs} />
 }
