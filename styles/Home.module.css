@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
 }
 
@@ -129,6 +129,46 @@
   position: absolute;
   filter: blur(45px);
   transform: translateZ(0);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+  font-family: var(--font-mono)
+}
+
+.left {
+  text-align: left;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: var(--font-mono)
+}
+
+/* .left ul {
+  margin-left: 15px;
+}
+
+.left li {
+  margin-bottom: 4px;
+}
+
+.left h2 + ul {
+  margin-top: 10px;
+} */
+
+.left h2 + p {
+  margin-top: 10px;
+}
+
+.left h2 + div {
+  margin-top: 10px;
+}
+
+.left input + label {
+  margin-left: 5px;
 }
 
 /* Enable hover only on non-touch devices */
