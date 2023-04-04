@@ -1,6 +1,6 @@
 import styles from '@/styles/Home.module.css'
-import Card from '@/components/_card.js'
-import Page from '@/components/_page'
+import Card from '@/components/Card.jsx'
+import Page from '@/components/Page'
 import dataFile from '@/public/recipes.json'
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import ListElement from '@/components/_list_element.js'
+import ListElement from '@/components/ListElement.jsx'
 
 export default function ParsedContent(jsonData) {
     let title, stats, ingr, dirs;
