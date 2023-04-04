@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.css'
-import Page from '@/components/_page'
-import ParsedContent from '@/components/_parsed_content.js'
+import Page from '@/components/Page'
+import ParsedContent from '@/components/ParsedContent.jsx'
 import dataFile from '@/public/recipes.json'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +14,7 @@ export default function RecipeWrapper() {
     const { recipe_id } = router.query
 
     if (!(recipe_id in dataFile)) {
-        return "404: Recipe Not Found!"
+        return (<div className={styles.no_recipe}>404: Recipe Not Found! ☹️</div>)
     }
 
     let jsonData = JSON.parse(JSON.stringify(dataFile[recipe_id]))

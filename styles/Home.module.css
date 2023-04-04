@@ -180,6 +180,13 @@
   width: 95%;
 }
 
+.no_recipe {
+  font-size: x-large;
+  font-family: 'Courier New';
+  text-align: center;
+  margin-top: 5%;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
 
