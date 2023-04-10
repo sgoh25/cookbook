@@ -24,22 +24,24 @@ export default function RecipeWrapper() {
   let content = (
     <>
       <div className={styles.thumbnail}>
-        <Image src={img} alt={title} width={300} height={220} />
+        <Image className={styles.img_thumbnail} src={img} alt={title} width={300} height={220} />
       </div>
       <div className={styles.title}>
         <h1>{title}</h1>
       </div>
-      <div className={styles.left}>
-        <h2>Statistics</h2>
-        {stats}
-      </div>
-      <div className={styles.ingr}>
-        <h2>Ingredients</h2>
-        {ingr}
-      </div>
-      <div className={styles.dirs}>
-        <h2>Directions</h2>
-        {dirs}
+      <div className={styles.recipe_wrapper}>
+        <div className={styles.left}>
+          <h2>Statistics</h2>
+          {stats}
+        </div>
+        <div className={styles.ingr}>
+          <h2>Ingredients</h2>
+          {ingr}
+        </div>
+        <div className={styles.dirs}>
+          <h2>Directions</h2>
+          {dirs}
+        </div>
       </div>
       <div className={styles.center}>
         <Link href="/" className={styles.back}>
