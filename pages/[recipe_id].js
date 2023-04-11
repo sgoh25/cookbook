@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link';
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.css'
@@ -51,5 +51,5 @@ export default function RecipeWrapper() {
     </>
   )
 
-  return <Page title={title} content={content} />
+  return <Page title={title} content={content} state="Recipe" />
 }

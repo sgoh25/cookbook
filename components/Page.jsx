@@ -1,7 +1,11 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
-export default function Page({ title, content }) {
+const inter = Inter({ subsets: ['latin'] })
+
+export default function Page({ title, content, state }) {
   return (
     <>
       <Head>
@@ -10,7 +14,17 @@ export default function Page({ title, content }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/fruit.png" />
       </Head>
-      <div className={styles.logo}>The Bready Bakery</div>
+      <div className={styles.top_wrapper}>
+        <div className={styles.logo}>The Bready Bakery</div>
+        <div className={styles.top_button_wrapper}>
+          {(state == "Create" || state == "Recipe") && <Link href="/" className={styles.create}>
+            <p className={inter.className}>Home</p>
+          </Link>}
+          {(state == "Home" || state == "Recipe") && <Link href="/create" className={styles.create}>
+            <p className={inter.className}>Create New</p>
+          </Link>}
+        </div>
+      </div>
       <div className={styles.header}></div>
 
       <div className={styles.wrapper}>

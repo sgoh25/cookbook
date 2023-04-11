@@ -23,7 +23,7 @@ export default function Home() {
     </>
   )
 
-  return <Page title="Cookbook" content={content} />
+  return <Page title="Cookbook" content={content} state="Home" />
 }
 
 function GetLabel(name) {
