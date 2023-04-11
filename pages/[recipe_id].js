@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RecipeWrapper() {
   const router = useRouter()
   const { recipe_id } = router.query
-  const [hasContent, setHasContent] = useState(false)
+  const [status, setStatus] = useState("Loading")
   const [title, setTitle] = useState("")
   const [stats, setStats] = useState("")
   const [ingr, setIngr] = useState("")
@@ -23,29 +23,34 @@ export default function RecipeWrapper() {
   const [img, setImg] = useState("")
 
   useEffect(() => {
-    get(ref_db(database, `recipes/${recipe_id}`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        const [t, s, i, d] = ParsedContent(snapshot.val())
-        setTitle(t)
-        setStats(s)
-        setIngr(i)
-        setDirs(d)
-        setHasContent(true)
-      }
-    }).catch((e) => {
-      console.log(e)
-      setHasContent(false)
-    })
+    if (recipe_id) {
+      get(ref_db(database, `recipes/${recipe_id}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          const [t, s, i, d] = ParsedContent(snapshot.val())
+          setTitle(t)
+          setStats(s)
+          setIngr(i)
+          setDirs(d)
+          setStatus("Loaded")
+        }
+      }).catch((error) => {
+        setStatus("404")
+        console.log(error)
+      })
 
-    getBlob(ref_store(storage, `images/${recipe_id}.jpeg`)).then(
-      (file) => setImg(URL.createObjectURL(file))
-    ).catch((error) => console.error(error))
-  }, [])
+      getBlob(ref_store(storage, `images/${recipe_id}.jpeg`)).then(
+        (file) => setImg(URL.createObjectURL(file))
+      ).catch((error) => {
+        setStatus("404")
+        console.error(error)
+      })
+    }
+  }, [recipe_id])
 
-  let content = (
-    (!hasContent ?
-      <div className={styles.no_recipe}>404: Recipe Not Found! ☹️</div>
-      : <>
+  let content
+  if (status == "Loaded") {
+    content = (
+      <>
         {img && <div className={styles.thumbnail}>
           <Image className={styles.img_thumbnail} src={img} alt={title} width={300} height={220} />
         </div>}
@@ -73,7 +78,13 @@ export default function RecipeWrapper() {
         </div>
       </>
     )
-  )
+  }
+  else if (status == "404") {
+    content = <div className={styles.no_recipe}>404: Recipe Not Found! ☹️</div>
+  }
+  else {
+    content = <div className={styles.loading}>Loading...</div>
+  }
 
   return <Page title={title} content={content} state="Recipe" />
 }

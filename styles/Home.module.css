@@ -62,7 +62,6 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   padding: 2rem;
   min-height: 100vh;
@@ -106,6 +105,7 @@
   width: var(--max-width);
   max-width: 100%;
   margin-bottom: 50px;
+  margin-top: 10px;
 }
 
 .card,
@@ -236,11 +236,16 @@
   width: 95%;
 }
 
-.no_recipe {
+.no_recipe,
+.loading {
   font-size: x-large;
   font-family: 'Courier New';
   text-align: center;
   margin-top: 5%;
+}
+
+.loading {
+  font-family: var(--font-mono);
 }
 
 .create_wrapper {
@@ -265,7 +270,8 @@
   margin-bottom: 20px;
 }
 
-.button, .cancel {
+.button,
+.cancel {
   padding: 5px;
   margin-right: 4px;
   margin-top: 4px;
