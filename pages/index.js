@@ -38,7 +38,7 @@ export default function Home() {
     }).catch((error) => {
       console.error(error)
     })
-  }, [status])
+  }, [])
 
   let content
   if (status == "Loaded") {
