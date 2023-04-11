@@ -33,3 +33,7 @@ yarn-error.log*
 
 # VS code
 .vscode
+
+# resources
+public/recipe_images/
+public/recipe_txt/
