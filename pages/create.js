@@ -8,6 +8,7 @@ import Page from '@/components/Page'
 
 export default function Create() {
   const router = useRouter()
+  const [status, setStatus] = useState("Loaded")
   const [error, setError] = useState(null)
   const [recipeForm, setRecipeForm] = useState({
     title: "",
@@ -28,7 +29,9 @@ export default function Create() {
   function handleForm() {
     let recipe_id = recipeForm.title.toLowerCase().replaceAll(" ", "_")
     let file_name = `${recipe_id}.jpeg`
+    setStatus("Loading")
     try {
+      window.scrollTo(0, 0)
       Object.keys(recipeForm).forEach((key) => {
         recipeForm[key] = convertToList(key, recipeForm[key])
         if (recipeForm[key] == "") { throw `${capFirst(key)} cannot be empty!` }
@@ -37,14 +40,16 @@ export default function Create() {
         console.log(`Recipe added: ${recipe_id}`)
       )
       const myNewFile = new File([image], `${file_name}`, { type: image.type })
-      uploadBytes(ref_store(storage, `images/${file_name}`), myNewFile).then(() =>
+      uploadBytes(ref_store(storage, `images/${file_name}`), myNewFile).then(() => {
         console.log(`Image added: ${file_name}`)
-      )
-      setError(null)
-      router.push('/')
+        setError(null)
+        setStatus("Loaded")
+        router.push('/')
+      })
     }
     catch (e) {
       setError(e)
+      setStatus("Loaded")
       console.error(e)
     }
 
@@ -57,8 +62,9 @@ export default function Create() {
     setImage(null)
   }
 
-  let content = (
-    <>
+  let content
+  if (status == "Loaded") {
+    content = (<>
       <form>
         <div className={styles.create_wrapper}>
           <div className={styles.title}>
@@ -90,7 +96,11 @@ export default function Create() {
         </div>
       </form>
     </>
-  )
+    )
+  }
+  else {
+    content = <div className={styles.loading}>Loading...</div>
+  }
 
   return <Page title="Create" content={content} state="Create" />
 }
