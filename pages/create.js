@@ -26,14 +26,14 @@ export default function Create() {
   }
 
   function handleForm() {
-    let recipe_id = recipeForm.title.toLowerCase().replace(" ", "_")
+    let recipe_id = recipeForm.title.toLowerCase().replaceAll(" ", "_")
     let file_name = `${recipe_id}.jpeg`
     try {
       Object.keys(recipeForm).forEach((key) => {
         recipeForm[key] = convertToList(key, recipeForm[key])
         if (recipeForm[key] == "") { throw `${capFirst(key)} cannot be empty!` }
       })
-      set(ref_db(database, "recipes/"), { [recipe_id]: recipeForm }).then(() =>
+      set(ref_db(database, "recipes/" + recipe_id), recipeForm).then(() =>
         console.log(`Recipe added: ${recipe_id}`)
       )
       const myNewFile = new File([image], `${file_name}`, { type: image.type })
