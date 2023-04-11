@@ -12,7 +12,7 @@ export default function Page({ title, content, state }) {
         <title>{title}</title>
         <meta name="description" content="An interactive cookbook" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/fruit.png" />
+        <link rel="shortcut icon" href="/images/fruit.png" />
       </Head>
       <div className={styles.top_wrapper}>
         <div className={styles.logo}>The Bready Bakery</div>
