@@ -108,6 +108,13 @@
   margin-top: 10px;
 }
 
+.card_wrapper {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .card,
 .back {
   display: grid;
