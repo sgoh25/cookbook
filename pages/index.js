@@ -1,15 +1,31 @@
+import { useEffect, useState } from "react"
+import { ref as ref_db, get } from 'firebase/database'
+import { ref as ref_store, getBlob } from 'firebase/storage'
+import { database, storage } from "@/firebase"
 import styles from '@/styles/Home.module.css'
 import Card from '@/components/Card.jsx'
 import Page from '@/components/Page'
-import dataFile from '@/public/recipes.json'
 
 export default function Home() {
-  let jsonData = JSON.parse(JSON.stringify(dataFile))
-  let cards = (
-    <>
-      {Object.keys(jsonData).map((name) => <Card href={"/" + name} label={GetLabel(name)} src={"/recipe_images/" + name + ".jpeg"} key={name} />)}
-    </>
-  )
+  let [cards, setCards] = useState([])
+  useEffect(() => {
+    get(ref_db(database, "recipes")).then((snapshot) => {
+      if (snapshot.exists()) {
+        let keys = Object.keys(snapshot.val())
+        keys.length != cards.length && setCards([])
+        if (keys.length > cards.length) {
+          keys.map((key) => {
+            getBlob(ref_store(storage, `images/${key}.jpeg`)).then((file) => setCards(
+              [...cards, <Card href={"/" + key} label={GetLabel(key)} src={URL.createObjectURL(file)} key={key} />]
+            ))
+          })
+        }
+      }
+      else {
+        console.log("No data available")
+      }
+    }).catch((error) => console.error(error))
+  }, [])
 
   let content = (
     <>
